@@ -18,13 +18,20 @@ def emotion_detector(text_to_analyse):
     formatted_response = json.loads(response.text)
 
     # Extracting Emotion label and score from the response
-    # If the response status code is 200, extract the label and score from the response
+    # If the response status code is 200, extract the emotions, score and dominant emotion from the response
     if response.status_code == 200:
         emotions = formatted_response['emotionPredictions'][0]['emotion']
         emotions["dominant_emotion"] = max(emotions, key=emotions.get)
-    # If the response status code is 500, set label and score to None
-    elif response.status_code == 500:
-        emotions = None
+    # If the response status code is 400, set all values to None
+    elif response.status_code == 400:
+        emotions = {
+                    'anger': None,
+                    'disgust': None,
+                    'fear': None,
+                    'joy': None,
+                    'sadness': None,
+                    'dominant_emotion': None
+                    }
 
     # Returning a dictionary containing Emotion Set results
     return emotions
