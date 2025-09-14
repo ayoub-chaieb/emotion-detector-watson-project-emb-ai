@@ -23,14 +23,15 @@ def sent_analyzer():
     if response["dominant_emotion"] is None:
         return "Invalid text! Please try again!"
     # Return a formatted string with the emotions, scores and dominant emotion
-    return f"""For the given statement, the system response is 
-            'anger': {response['anger']}, 
-            'disgust': {response['disgust']}, 
-            'fear': {response['fear']}, 
-            'joy': {response['joy']} 
-            and 'sadness': {response['sadness']}. 
-            The dominant emotion is {response['dominant_emotion']}."""
-
+    return (
+    f"For the given statement, the system response is "
+    f"'anger': {response['anger']}, "
+    f"'disgust': {response['disgust']}, "
+    f"'fear': {response['fear']}, "
+    f"'joy': {response['joy']} "
+    f"and 'sadness': {response['sadness']}. "
+    f"The dominant emotion is {response['dominant_emotion']}."
+)
 @app.route("/")
 def render_index_page():
     ''' This function initiates the rendering of the main application
